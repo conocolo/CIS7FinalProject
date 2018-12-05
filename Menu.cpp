@@ -1,4 +1,7 @@
 #include <iostream>
+#include <vector>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std; 
 
@@ -18,6 +21,10 @@ class Vignere {
       void menu(void);
       void encrypt(void);
       void decrypt(void);
+      int getLetterValue(char);
+      string extendKeyWord(void);
+      void print(vector<char>&); 
+
    private:
       string keyWord;
       string plainText;
@@ -32,9 +39,42 @@ Vignere::Vignere(void) {
 }
 
 void Vignere::encrypt() {
-// Do whatever things here
 
-  this->cipherText = "whatever";
+  // Reset
+  this->cipherText = "";
+  // Declarations
+  int shift = 0;
+  int plainTextShift = 0;
+  // Container for our alphabet
+  vector<char> alphabet;
+
+  // Check that keyWord is at least the same length
+  if (this->keyWord.length() < this->plainText.length()) {
+    // Set keyWord length
+  }
+  // Loop through each letter of plainText
+  for (int i = 0; i < this->plainText.length(); i++) {
+    shift = getLetterValue(keyWord[i]);
+    plainTextShift = getLetterValue(plainText[i]);
+    //cout << "shift: " << shift << endl;
+    // Generate the alphabet that is shifted 
+    for (int k = 65 + plainTextShift; k < 91 + plainTextShift; k++) {
+      // If we pass the letter 'Z', start over
+      if ((k % 91) < 65) {
+        alphabet.push_back(char((k % 91) + 65));
+      }
+      // Push back into our array like normal
+      else {
+        //cout << char(i) << endl;
+        alphabet.push_back(char(k));
+      }
+      
+    }
+    //print(alphabet);
+    this->cipherText += alphabet[shift];
+    alphabet.clear();
+  }
+  cout << "Cipher text: " << this->cipherText << endl;
 }
 
 void Vignere::decrypt() {
@@ -49,7 +89,6 @@ void Vignere::menu(void) {
   int choice;
   string input;
  
-
   //This is our menu choices
   do {
       //This is our menu 
@@ -69,17 +108,16 @@ void Vignere::menu(void) {
         cin >> input;
         this->setKeyWord(input);
         cout << "\nKeyword set to: " << this->getKeyWord() << endl << endl;
-        
-
         break;
 
       case 2: //ENCRYPT
-        cout << "Please enter plaintext to be encryted: ";
+        cout << "Please enter plaintext to be encrypted: ";
         cin >> input;
         this->setPlainText(input);
 
           //These lines are just placeholders to ensure input is being turned into plaintext
-        cout << "Passed your plaintext, " << this->getPlainText() << ", to get encrypted..." << endl; 
+        cout << "Passed your plaintext, " << this->getPlainText() << ", to get encrypted..." << endl;
+        this->encrypt();
 
         break;
 
@@ -94,17 +132,15 @@ void Vignere::menu(void) {
         break;
 
       case 4:
-        //GET THE FUCK OUT
         cout << "Exiting program...\n";
         keepGoing = false;
-        
         break;
       
       default:
         cout << "\nInvalid Option! Please try again.\n" << endl;
         break;
     }
-  } while (keepGoing = true);
+  } while (keepGoing == true);
 }
 
 // Main function for the program
@@ -115,4 +151,18 @@ int main() {
   /*v.setKeyWord("hahfdfaahahaha"); 
   cout << "Setting keyword to: " << v.getKeyWord() <<endl;*/
   return 0;
+}
+
+
+int Vignere::getLetterValue(char letter) {
+  int letterValue = (letter - 'A');
+  return letterValue;
+} 
+
+
+void Vignere::print(vector<char> &az) {
+  // Iterate through vector and print out value
+  for (vector<char>::iterator it = az.begin(); it != az.end(); it++) {
+    cout << *it << " ";
+  }
 }
