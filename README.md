@@ -1,21 +1,20 @@
-# CIS Final Project
+# CIS Final Project (Fall 2018)
 
 For our final project, we chose to tackle Case No. 3, The Vignere Cipher. Our program takes plaintext and a keyword and uses the Vigenere cipher to produce ciphertext. The program is written in C++ and took about 2 weeks to complete.
 ## Getting Started
 
-You will need a web-based IDE such as [repl](https://repl.it/) or [cpp.sh](cpp.sh). Copy the contents of "Project.final_version.cpp" into the IDE and compile. 
+You will need a web-based IDE such as [repl](https://repl.it/) or [cpp.sh](cpp.sh). Copy the contents of "Project.final_version.cpp" into the IDE and compile.
 
-### Questions
-
-Explain the project.
+Alternatively you can clone this repository using [Git](https://git-scm.com/) and run the "Project.final_version.cpp" found in the master branch using a compiler of choice. We used [MinGW](https://sourceforge.net/projects/mingw-w64/) and the *g++* command
 
 ```
-Give an example
+Example
 ```
+
 
 ## Built With
 
-* [repl](https://repl.it/) - Main IDE
+* [repl](https://repl.it/) - Primary IDE
 * [Visual Code](https://code.visualstudio.com/) - Secondary IDE
 * [MinGW](https://sourceforge.net/projects/mingw-w64/) - Compiler used in conjunction with Microsoft Visual Code.
 
