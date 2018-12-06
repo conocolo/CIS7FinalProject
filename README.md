@@ -8,8 +8,18 @@ You will need a web-based IDE such as [repl](https://repl.it/) or [cpp.sh](cpp.s
 Alternatively you can clone this repository using [Git](https://git-scm.com/) and run the "Project.final_version.cpp" found in the master branch using a compiler of choice. We used [MinGW](https://sourceforge.net/projects/mingw-w64/) and the *g++* command
 
 ```
-Example
+git clone https://github.com/conocolo/CIS7FinalProject/
+cd /User/User/Documents/GitHub/CIS7FinalProject/
+
+dir
+
+g++ Project.final_version.cpp
 ```
+
+
+### Known Issues
+* Plaintext entries cannot have a space.
+* Menu does not work well when you enter letters.
 
 
 ## Built With
