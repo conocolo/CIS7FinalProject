@@ -1,6 +1,6 @@
-#CIS7 FINAL PROJECT
+# CIS7 FINAL PROJECT
 
-##Author and Contributor List
+## Author and Contributor List
 
 Randy Son
 
