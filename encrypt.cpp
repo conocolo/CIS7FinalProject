@@ -1,7 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <stdlib.h>
-#include <time.h>
 
 using namespace std; 
 
@@ -16,6 +13,10 @@ class Vignere {
       void setCipherText(string c) { this->cipherText = c; };
       string getCipherText(void) { return cipherText; };
 
+      static const int alphabetLength = 26;
+      static const int alphabetStart = 65;
+      static const int alphabetEnd = 90;
+
       Vignere();  // This is the constructor
 
       void menu(void);
@@ -23,7 +24,8 @@ class Vignere {
       void decrypt(void);
       int getLetterValue(char);
       void extendKeyWord(bool);
-      void print(vector<char>&); 
+      string trim(string);
+      string strUpper(string);
 
    private:
       string keyWord;
@@ -38,83 +40,93 @@ Vignere::Vignere(void) {
    menu();
 }
 
+/************************************************
+* Vignere encryption function
+* Calculation:
+* alphabetStart + plainTextShift + keyWordShift
+* If result > end of alphabet
+*     subtract 26
+* Done.
+************************************************/
 void Vignere::encrypt() {
 
-  // Reset
+  // Reset cipher text
   this->cipherText = "";
-  // Declarations
-  int shift = 0;
-  int plainTextShift = 0;
-  // Container for our alphabet
-  vector<char> alphabet;
 
-  // Check that keyWord is at least the same length
+  // Declarations
+  int keyWordShift = 0;
+  int plainTextShift = 0;
+  int letterResult = 0;
+
+  // Check keyword length
   if (this->keyWord.length() < this->plainText.length()) {
-    // Set keyWord length
+
+    // Extend keyword if not long enough
     extendKeyWord(true);
     cout << "New keyword: " << this->keyWord << endl;
   }
+
   // Loop through each letter of plainText
   for (int i = 0; i < this->plainText.length(); i++) {
-    shift = getLetterValue(keyWord[i]);
+
+    // Get letter values for each letter
+    keyWordShift = getLetterValue(keyWord[i]);
     plainTextShift = getLetterValue(plainText[i]);
-    //cout << "shift: " << shift << endl;
-    // Generate the alphabet that is shifted 
-    for (int k = 65 + plainTextShift; k < 91 + plainTextShift; k++) {
-      // If we pass the letter 'Z', start over
-      if ((k % 91) < 65) {
-        alphabet.push_back(char((k % 91) + 65));
-      }
-      // Push back into our array like normal
-      else {
-        //cout << char(i) << endl;
-        alphabet.push_back(char(k));
-      }
-      
-    }
-    //print(alphabet);
-    this->cipherText += alphabet[shift];
-    alphabet.clear();
+
+    // Encrypt letter
+    letterResult = (alphabetStart + plainTextShift + keyWordShift);
+    
+    // Rotate alphabet if it extends past
+    if (letterResult > alphabetEnd)
+      letterResult -= alphabetLength;
+
+    // Output
+    this->cipherText += (char)letterResult;
   }
   cout << "Cipher text: " << this->cipherText << endl;
 }
 
+/************************************************
+* Vignere decryption function
+* Calculation:
+* alphabetStart + cipherTextShift - keyWordShift
+* If result < start of alphabet
+*     Add 26
+* Done.
+************************************************/
 void Vignere::decrypt() {
-// Reset
-  this->plainText = "";
-  // Declarations
-  int shift = 0;
-  int cipherTextShift = 0;
-  // Container for our alphabet
-  vector<char> alphabet;
 
-  // Check that keyWord is at least the same length
+  // Reset plain text
+  this->plainText = "";
+
+  // Declarations
+  int keyWordShift = 0;
+  int cipherTextShift = 0;
+  int letterResult = 0;
+
+  // Check keyword length
   if (this->keyWord.length() < this->cipherText.length()) {
-    // Set keyWord length
+
+    // Extend keyword length if not long enough
     extendKeyWord(false);
     cout << "New keyword: " << this->keyWord << endl;
   }
+
   // Loop through each letter of cipher text
   for (int i = 0; i < this->cipherText.length(); i++) {
-    shift = getLetterValue(keyWord[i]);
+
+    keyWordShift = getLetterValue(keyWord[i]);
     cipherTextShift = getLetterValue(cipherText[i]);
-    //cout << "shift: " << shift << endl;
-    // Generate the alphabet that is shifted 
-    for (int k = 65 + cipherTextShift; k < 91 + cipherTextShift; k++) {
-      // If we pass the letter 'Z', start over
-      if ((k % 91) < 65) {
-        alphabet.push_back(char((k % 91) + 65));
-      }
-      // Push back into our array like normal
-      else {
-        //cout << char(i) << endl;
-        alphabet.push_back(char(k));
-      }
-      
-    }
-    //print(alphabet);
-    this->plainText += alphabet[shift];
-    alphabet.clear();
+
+    // Decryption
+    letterResult = (alphabetStart + cipherTextShift - keyWordShift);
+
+    // Rotate alphabet if it extends past
+    if (letterResult < alphabetStart)
+      letterResult += alphabetLength;
+    
+    // Output result
+    this->plainText += (char)(letterResult);
   }
   cout << "Deciphered text: " << this->plainText << endl;
 }
@@ -141,15 +153,17 @@ void Vignere::menu(void) {
     switch (choice){
       case 1: //KEYWORD
         cout << "Please enter a Keyword: ";
-        cin >> input;
-        this->setKeyWord(input);
+        cin.ignore();
+        getline(cin, input);
+        this->setKeyWord(strUpper(trim(input)));
         cout << "\nKeyword set to: " << this->getKeyWord() << endl << endl;
         break;
 
       case 2: //ENCRYPT
         cout << "Please enter plaintext to be encrypted: ";
-        cin >> input;
-        this->setPlainText(input);
+        cin.ignore();
+        getline(cin, input);
+        this->setPlainText(strUpper(trim(input)));
 
           //These lines are just placeholders to ensure input is being turned into plaintext
         cout << "Passed your plaintext, " << this->getPlainText() << ", to get encrypted..." << endl;
@@ -159,8 +173,9 @@ void Vignere::menu(void) {
 
       case 3: //DECRYPT
         cout << "Please enter ciphertext to be decrypted: ";
-        cin >> input;
-        this->setCipherText(input);
+        cin.ignore();
+        getline(cin, input);
+        this->setCipherText(strUpper(input));
           
           
           //These lines are just placeholders to ensure input is being turned into ciphertext
@@ -184,15 +199,12 @@ void Vignere::menu(void) {
 int main() {
   std::cout << "This program demonstrates Vignere Encryption and Decryption!\n";
   Vignere v;
-  // set line length
-  /*v.setKeyWord("hahfdfaahahaha"); 
-  cout << "Setting keyword to: " << v.getKeyWord() <<endl;*/
+
   return 0;
 }
 
-
 int Vignere::getLetterValue(char letter) {
-  int letterValue = (letter - 'A');
+  int letterValue = (letter - 'A'); // A starts at 0
   return letterValue;
 } 
 
@@ -224,9 +236,17 @@ void Vignere::extendKeyWord(bool plainText) {
   }
 }
 
-void Vignere::print(vector<char> &az) {
-  // Iterate through vector and print out value
-  for (vector<char>::iterator it = az.begin(); it != az.end(); it++) {
-    cout << *it << " ";
+string Vignere::trim(string s) {
+  return s.erase(s.find_last_not_of(" \n\r\t")+1);
+}
+
+string Vignere::strUpper(string s) {
+  string output, tmp = "";
+
+  for (int i = 0; i < s.length(); i++) {
+    tmp = toupper(s[i]);
+    output += tmp;
   }
+
+  return output;
 }
