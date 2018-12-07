@@ -1,11 +1,12 @@
 # CIS Final Project (Fall 2018)
 
-For our final project, we chose to tackle Case No. 3, The Vignere Cipher. Our program takes plaintext and a keyword and uses the Vigenere cipher to produce ciphertext. The program is written in C++ and took about 2 weeks to complete.
+For our final project, we chose to tackle Case No. 3, The Vignere Cipher. The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a form of *polyalphabetic* substitution. Our program takes plaintext and a keyword from the user and utilizes the Vigenere cipher to produce ciphertext. Users also have the option to decrypt ciphertext that was encrypted using the Vignere cipher. Our program is written in C++ and took about 1 week to complete.
+
 ## Getting Started
 
 You will need a web-based IDE such as [repl](https://repl.it/) or [cpp.sh](cpp.sh). Copy the contents of "Project.final_version.cpp" into the IDE and compile.
 
-Alternatively you can clone this repository using [Git](https://git-scm.com/) and run the "Project.final_version.cpp" found in the master branch using a compiler of choice. We used [MinGW](https://sourceforge.net/projects/mingw-w64/) and the *g++* command
+Alternatively you can clone this repository using [Git](https://git-scm.com/) and run the "Project.final_version.cpp" found in the master branch using a compiler of choice. We used [MinGW](https://sourceforge.net/projects/mingw-w64/) and the *g++* command.
 
 ```
 git clone https://github.com/conocolo/CIS7FinalProject/
@@ -16,11 +17,79 @@ dir
 g++ Project.final_version.cpp
 ```
 
+## Runnning The Program
+
+The menu is pretty straight forward. It will ask for a keyword and input a keyword of choice. 
+
+```
+CIS-7 Class Project, Fall 2018
+Coded by Randy Son and Devan Vegiga
+
+
+This program demonstrates Vignere Encryption and Decryption!
+
+
+Creating Vignere class...
+Calling Vignere::menu...
+Loaded...
+
+Welcome! Please enter a Keyword: PANDA
+
+Keyword set to: PANDA
+```
+
+After entering you keyword, it will be stored and used throughout the program until changed. Press **1** to change the KEYWORD. The menu is programmed to display the current keyword.
+
+```
+Please select an option:
+1) Change Keyword
+   >>Current Key: PANDA
+2) Encrypt
+3) Decrypt
+4) Exit
+>>Enter Option:  
+```
+With your keyword set, you are ready to encrypt or decrypt. Select **2** for Encryption or **3** for decryption. After entering your plaintext (or ciphertext when decrypting) the program will produce the corresponding result. 
+
+```
+Please select an option:
+1) Change Keyword
+   >>Current Key: PANDA
+2) Encrypt
+3) Decrypt
+4) Exit
+>>Enter Option: 2
+
+Please enter plaintext to be encrypted: FLYINGSPAGHETTIMONSTER
+Passed your plaintext, FLYINGSPAGHETTIMONSTER, to get encrypted...
+Plaintext length: 22
+Keyword length: 5
+New keyword: PANDAPANDAPANDAPANDAPA
+Cipher text: ULLLNVSCDGWEGWIBOAVTTR
+```
+
+The program will continue until the user presses **4** to exit. 
+
+```
+Please select an option:
+1) Change Keyword
+   >>Current Key: PANDAPA
+2) Encrypt
+3) Decrypt
+4) Exit
+>>Enter Option: 4
+
+Exiting program...
+
+```
+### Approach
+
+
 
 ### Known Issues
+
 * Plaintext entries cannot have a space.
 * Menu does not work well when you enter letters.
-
 
 ## Built With
 
