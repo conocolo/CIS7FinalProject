@@ -82,9 +82,12 @@ Please select an option:
 Exiting program...
 
 ```
-### Approach
+## Documentation
 
+*By Devan*
+When reviewing the different the cases on Day 1 of the project, Randy and I immediately had our eyes set on Case 3: The Vignere Cipher. As a cryptologist, it was the most appealing. I wanted to tackle the encryption algorithm and have it operate like the Enigma Machine, an encryption machine used by Nazi Germany during World War II. We scrapped that idea and ended up formulating our encryption/decryption based off the [IMAGE](https://www.geeksforgeeks.org/wp-content/uploads/Vigen%C3%A8re_square_shading.png) shown in the rubric. 
 
+During our first meeting, we composed our psuedocode on a piece of paper. We wanted to incorporate a menu based command-line interface and have it loop until the user stops the program. That way the user is not constantly starting up the program. Our menu would include options for both encryption and decryption. Randy got to work on coding the encryption algoritm and I began the writing the menu. I based the menu off a another project I wrote in the Python Language. From there everything came to place with more and more. 
 
 ### Known Issues
 
@@ -99,8 +102,8 @@ Exiting program...
 
 ## Authors
 
-* **Randy Son** - *Software Developer/ C++ Master Mind* - [Conocolo](https://github.com/conocolo)
-* **Devan Vegiga** - *Project Coordinator/Junior Software Developer* - [dvegiga](https://github.com/dvegiga)
+* **Randy Son** - *Software Developer/ C++ Master Mind/Stranger from the street* - [Conocolo](https://github.com/conocolo)
+* **Devan Vegiga** - *Project Coordinator/Junior Software Developer/Homeless* - [dvegiga](https://github.com/dvegiga)
 
 ## License
 
@@ -117,8 +120,6 @@ This project is licensed under the GNU License - see the [GNU General Public lic
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 ```
-
-
 
 ## Acknowledgments
 
