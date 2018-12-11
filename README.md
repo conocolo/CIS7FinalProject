@@ -109,7 +109,7 @@ This repository was created by Randy. Randy has prior knowledge with GitHub and 
 
 ### Closing Thoughts
 
-All and all this project was a success. We were able to solve our case and produced (what I feel is) an above average program. This was a great expereience and we look forward to projects to come!
+All and all this project was a success. We were able to solve our case and produce (what I feel is) an above average program. This was a great expereience and we look forward to projects to come!
 
 ### Known Issues
 
