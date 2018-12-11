@@ -1,6 +1,6 @@
 # CIS Final Project (Fall 2018)
 
-For our final project, we chose to tackle Case No. 3, The Vignere Cipher. The [Vigenère cipher] is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a form of *polyalphabetic* substitution. Our program takes plaintext and a keyword from the user and utilizes the Vigenere cipher to produce ciphertext. Users also have the option to decrypt ciphertext that was encrypted using the Vignere cipher. Our program is written in C++ and took about 1 week to complete.
+For our final project, we chose to tackle Case No. 3, The Vignere Cipher. The **Vigenère cipher** is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a form of *polyalphabetic* substitution. Our program takes plaintext and a keyword from the user and utilizes the Vigenere cipher to produce ciphertext. Users also have the option to decrypt ciphertext that was encrypted using the Vignere cipher. Our program is written in C++ and took about 1 week to complete.
 
 ## Getting Started
 
