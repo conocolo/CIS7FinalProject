@@ -115,7 +115,7 @@ All and all this project was a success. We were able to solve our case and produ
 
 While our program satisfies the objective, there are a few known issues.
 
-* Plaintext/Ciphertext entries cannot have a space. **(FIXED)**
+* ~Plaintext/Ciphertext entries cannot have a space~. **(FIXED)**
 * Entering letters in the menu breaks the program.
 * Key is changed into the keystream after the first encrytion/decryption, if the user's plaintext/ciphertext is longer than the key. Check your key when encrypting/decrypting numerous times. 
 
